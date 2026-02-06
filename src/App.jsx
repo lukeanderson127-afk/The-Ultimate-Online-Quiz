@@ -32,7 +32,7 @@ const App = () => {
     setIsAnswered(true);
 
     if (index === shuffledQuestions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
+      setScore((s) => s + 1);
     }
   };
 
@@ -42,11 +42,13 @@ const App = () => {
     setSelectedAnswer(null);
     setIsAnswered(false);
   } else {
+    // include last answer in final score, then finish
+    const lastCorrect = selectedAnswer === currentQ.correctAnswer;
+    const finalScore = score + (lastCorrect ? 1 : 0);
+    setScore(finalScore);
     setIsFinished(true);
 
-    // Check for perfect score
-    const gotLastCorrect = selectedAnswer === currentQ.correctAnswer;
-    if (score + (selectedAnswer === currentQ.correctAnswer ? 1 : 0) === shuffledQuestions.length) {
+    if (finalScore === shuffledQuestions.length) {
       setShowCelebration(true);
     }
   }
