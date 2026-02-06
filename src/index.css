@@ -53,9 +53,12 @@ body {
   cursor: pointer;
 }
 .card-container > button {
-  display: block;
-  margin: 20px auto;
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 20px 0;
 }
+
 
 button {
   margin: 20px;
