@@ -25,6 +25,11 @@ const App = () => {
     setShuffledQuestions(shuffleArray(questions));
   }, []);
 
+  if (shuffledQuestions.length === 0) return null;
+
+  const currentQ = shuffledQuestions[currentQuestion];
+  const options = currentQ.options;
+
   const handleAnswerClick = (index) => {
     if (isAnswered || isFinished) return;
 
@@ -64,11 +69,6 @@ const App = () => {
     setIsFinished(false);
     setShowCelebration(false);
 };
-
-  if (shuffledQuestions.length === 0) return null;
-
-  const currentQ = shuffledQuestions[currentQuestion];
-  const options = currentQ.options;
 
   return (
     <>
