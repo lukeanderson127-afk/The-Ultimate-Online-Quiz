@@ -32,7 +32,7 @@ body {
 
 
 .card-container .header h1 {
-  font-size: 24px;
+  font-size: 50px;
 }
 
 .card-container .header p {
@@ -126,4 +126,17 @@ color: tomato;
 @keyframes flash {
   from { opacity: 1; }
   to { opacity: 0.3; }
+}
+.globe-image {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
 }
