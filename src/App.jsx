@@ -3,6 +3,7 @@ import questions from "./questions";
 import Confetti from "react-confetti";
 import confetti from "canvas-confetti";
 
+
 function shuffleArray(array) {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -80,7 +81,9 @@ const App = () => {
   }, [shuffledQuestions, currentQuestion]);
 
   // COUNTDOWN EFFECT 
-  useEffect(() => { if (!showCountdown) return; 
+  useEffect(() => { 
+  if (!showCountdown) return; 
+  
   const interval = setInterval(() => {
  setCountdown((c) => { 
   if (c <= 1) {
@@ -191,7 +194,13 @@ const App = () => {
       <div className="card-container">
         <div className="header">
           <h1>The Ultimate Geography Quiz!</h1>
-
+        {!quizStarted && !showCountdown && (
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/512px-The_Earth_seen_from_Apollo_17.jpg"
+    alt="Earth"
+    className="globe-image"
+  />
+)}
          {quizStarted && !isFinished && !showCountdown && (
             <>
               <p>
@@ -240,7 +249,7 @@ const App = () => {
           <Confetti width={windowSize.width} height={windowSize.height} />
         )}
 
-        {quizStarted && !isFinished && (
+          {quizStarted && !showCountdown && !isFinished && (
           <ul className="questions">
             {shuffledOptions.map((optionObj, index) => {
               let className = "";
@@ -269,7 +278,8 @@ const App = () => {
         {/* BUTTONS AT THE BOTTOM */}
         {!quizStarted  && !showCountdown ? (
           <button 
-          onClick={() => { setShowCountdown(true);
+          onClick={() => { 
+          setShowCountdown(true);
           setCountdown(3);
           }}
           >
