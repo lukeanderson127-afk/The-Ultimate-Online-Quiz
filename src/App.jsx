@@ -20,16 +20,21 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
-  
 
+  const [quizStarted, setQuizStarted] = useState(false);
+
+  const [showCountdown, setShowCountdown] = useState(false);
+  const [countdown, setCountdown] = useState(3);
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-const [timer, setTimer] = useState(5);
 
-const [shuffledOptions, setShuffledOptions] = useState([]);
+  const [timer, setTimer] = useState(5);
+  const [shuffledOptions, setShuffledOptions] = useState([]);
+ 
+
 
   const launchFirework = () => {
     const duration = 800;
@@ -57,12 +62,10 @@ const [shuffledOptions, setShuffledOptions] = useState([]);
   };
 
   useEffect(() => {
-    // Shuffle questions on load
     const randomizedQuestions = shuffleArray(questions);
     setShuffledQuestions(randomizedQuestions);
   }, []);
 
-  // Shuffle answers whenever the question changes
   useEffect(() => {
     if (shuffledQuestions.length === 0) return;
 
@@ -76,25 +79,50 @@ const [shuffledOptions, setShuffledOptions] = useState([]);
     setShuffledOptions(shuffleArray(answerObjects));
   }, [shuffledQuestions, currentQuestion]);
 
-  // ⏱️ Timer countdown logic
-  useEffect(() => { if (isFinished) return; 
-    setTimer(5);
-     // reset timer for each question
-   const interval = setInterval(() => { 
-    setTimer((t) => { if (t <= 1) { clearInterval(interval);
-       // Auto-fail if unanswered 
-    if (!isAnswered) { setIsAnswered(true); setSelectedAnswer(null); } 
-    // Move to next question after short delay 
-    setTimeout(() => { handleNextClick(); }, 800);
-
-    return 0; 
-  } 
-  return t - 1;
- }); 
-}, 1000);
-
+  // COUNTDOWN EFFECT 
+  useEffect(() => { if (!showCountdown) return; 
+  const interval = setInterval(() => {
+ setCountdown((c) => { 
+  if (c <= 1) {
+ clearInterval(interval); 
+ setShowCountdown(false);
+  setQuizStarted(true);
+   return 0; } 
+   return c - 1; 
+  }); 
+  }, 1000);
   return () => clearInterval(interval); 
-}, [currentQuestion]);
+  }, [showCountdown]);
+
+  // TIMER EFFECT
+  useEffect(() => {
+    if (!quizStarted || isFinished) return;
+
+    setTimer(5);
+
+    const interval = setInterval(() => {
+      setTimer((t) => {
+        if (t <= 1) {
+          clearInterval(interval);
+
+          if (!isAnswered) {
+            setIsAnswered(true);
+            setSelectedAnswer(null);
+          }
+
+          setTimeout(() => {
+            handleNextClick();
+          }, 800);
+
+          return 0;
+        }
+
+        return t - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentQuestion, quizStarted, isFinished]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -152,6 +180,10 @@ const [shuffledOptions, setShuffledOptions] = useState([]);
     setScore(0);
     setIsFinished(false);
     setShowCelebration(false);
+    setTimer(5);
+    setQuizStarted(false);
+    setShowCountdown(false); 
+    setCountdown(3);
   };
 
   return (
@@ -160,25 +192,27 @@ const [shuffledOptions, setShuffledOptions] = useState([]);
         <div className="header">
           <h1>The Ultimate Geography Quiz!</h1>
 
-          {!isFinished ? (
+         {quizStarted && !isFinished && !showCountdown && (
             <>
               <p>
                 {currentQuestion + 1}: {currentQ.question}
               </p>
               <p className={`timer ${timer <= 2 ? "warning" : ""}`}>
-              ⏱️ Time left: {timer}s
-             </p>
+                ⏱️ Time left: {timer}s
+              </p>
             </>
-          ) : (
+          )}
+
+          {isFinished && (
             <div
               className={`results-message ${
                 score === shuffledQuestions.length ? "perfect-score" : ""
               }`}
             >
               {score === shuffledQuestions.length && (
-               <div className="smashed-it">
-                <h2>A Perfect Score!</h2>
-                <h3>You Are The Quiz Master</h3>
+                <div className="smashed-it">
+                  <h2>A Perfect Score!</h2>
+                  <h3>You Are The Quiz Master</h3>
                 </div>
               )}
 
@@ -194,12 +228,19 @@ const [shuffledOptions, setShuffledOptions] = useState([]);
             </div>
           )}
         </div>
+ {/* COUNTDOWN SCREEN */}
+        {showCountdown && (
+          <div className="countdown-screen">
+            <h2>Get Ready…</h2>
+            <h1>{countdown}</h1>
+          </div>
+        )}       
 
         {showCelebration && (
           <Confetti width={windowSize.width} height={windowSize.height} />
         )}
 
-        {!isFinished && (
+        {quizStarted && !isFinished && (
           <ul className="questions">
             {shuffledOptions.map((optionObj, index) => {
               let className = "";
@@ -225,14 +266,25 @@ const [shuffledOptions, setShuffledOptions] = useState([]);
           </ul>
         )}
 
-        {!isFinished ? (
-          currentQuestion === shuffledQuestions.length - 1 ? (
+        {/* BUTTONS AT THE BOTTOM */}
+        {!quizStarted  && !showCountdown ? (
+          <button 
+          onClick={() => { setShowCountdown(true);
+          setCountdown(3);
+          }}
+          >
+          Start Quiz
+          </button>
+        ) : !isFinished && !showCountdown ? (
+          currentQuestion === 0 ? (
+            <button onClick={handleNextClick}>Next Question</button>
+          ) : currentQuestion === shuffledQuestions.length - 1 ? (
             <button onClick={handleNextClick}>Finish Quiz</button>
           ) : (
             <button onClick={handleNextClick}>Next Question</button>
           )
         ) : (
-          <button onClick={handleReset}>Reset Quiz</button>
+          isFinished && <button onClick={handleReset}>Reset Quiz</button>
         )}
       </div>
     </>
