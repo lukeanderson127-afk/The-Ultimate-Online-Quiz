@@ -251,13 +251,13 @@ const App = () => {
               {score === shuffledQuestions.length && (
                 <div className="perfect-score-header">
                   <h2>A Perfect Score!</h2>
-                  <h3>You Are The Master Of The Ultimate Geography Quiz!</h3>
+                  <h3>You Have Completed The Ultimate Geography Quiz!</h3>
 
                   {/* ⏱️ NEW — Show seconds + milliseconds */}
                   {totalTime && (
                     <>
                       <p className="completion-time">
-                        You completed the quiz in{" "}
+                        You Finished It In{" "}
                         {totalTime.seconds}.
                         {String(totalTime.milliseconds).padStart(3, "0")} seconds!
                       </p>
