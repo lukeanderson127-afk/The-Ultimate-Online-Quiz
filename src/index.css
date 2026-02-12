@@ -87,10 +87,14 @@ color: tomato;
 }
 
 .results-message {
-  padding: 100px;
-  border-radius: 12px;
+  flex: 1;                 /* Fills the container evenly */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers everything vertically */
   text-align: center;
+  overflow: hidden;        /* Prevents it from stretching the container */
 }
+
 
 .perfect-score {
   border: 3px solid gold;
