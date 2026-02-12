@@ -48,11 +48,11 @@ out of time!
 
 4.There will be ten questions to answer each one rendered randomnly ASWELL as the answers so theres no way to cheat it by continuity when you fail and have to try again!
 
-5.If you dont answer in time the quiz moves on to the question so you need to put the past behind you and get back in the game.
+5.If you dont answer in time the quiz moves on to the next question so you need to let it go and get back in the game.
 
-6.you can click to the next question at any time weather you answer it correctly or incorrectly.
+6.You can click to the next question at any time whether you answer it correctly or incorrectly.
 
-7.AS you move through the questions at pace ONLY the correct answer IF selected is highlighted in green, you are never shown the correct answer if an incorrect answer is selected or you run out of time!
+7.As you move through the questions at pace ONLY the correct answer IF selected is highlighted in green, you are never shown the correct answer if an incorrect answer is selected or you run out of time!
 
 8.At the finish you will be shown your score AND your time IF you get a perfect score! if you fail just your score is shown.
 
