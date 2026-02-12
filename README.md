@@ -18,16 +18,20 @@ First Time Visitor Goals:
 To see if you have the kowledge, speed of instruction intake and speed of hand to get a perfect score at the first go! 
 
 Returning Visitor Goals: 
-To see if you have gone away and done the work to improve and trya nd get that perfect score!
+To see if you have gone away and done the work to try and get that perfect score!
 
 Frequent Visitor Goals:
 To see if you can beat your time of getting that perfect score but without rushing so you dont make a mistake and have to start again!
 
 Target Audience Is:
-Quiz enthuasists
-People who want to improve their score all the time
-Interested in the world
-People who Hate to loose
+
+Quiz enthuasists.
+
+People who want to improve their score all the time.
+
+Interested in the world.
+
+People who Hate to loose!
 
 Features:
 this is SPA quiz game!
