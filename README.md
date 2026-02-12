@@ -6,8 +6,9 @@ This project is built using React + Vite.
 
 ### 🔗 Quick Links
 - [View the GitHub Repo](https://github.com/lukeanderson127-afk/The-Ultimate-Online-Quiz)
-- [Open the React App (local)](http://localhost:5173)
-
+## 🎮 Play the Quiz
+Click here to play the live version:  
+https://lukeanderson127-afk.github.io/The-Ultimate-Geography-Quiz/
 
 
 Introduction:
@@ -83,7 +84,9 @@ The page will be automatically refreshed with a detailed ribbon display to indic
 The live link can be found here
 ### 🔗 Quick Links
 - [View the GitHub Repo](https://github.com/lukeanderson127-afk/The-Ultimate-Online-Quiz)
-- [Open the React App (local)](http://localhost:5173)
+## 🎮 Play the Quiz
+Click here to play the live version:  
+https://lukeanderson127-afk.github.io/The-Ultimate-Geography-Quiz/
 
 Contact:
 Luke Anderson
