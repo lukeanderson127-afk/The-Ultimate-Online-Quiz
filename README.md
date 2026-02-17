@@ -59,9 +59,13 @@ out of time!
 
 9.There is no celebration for second place, you either get a perfect score or fail in which case swat up and try again!
 
+Key Take away points:
+
+Unlike other online quiz games, when the player answers a question wrong or runs out of time to answer the question, the player is never told the correct answer, not even on the results page. this way it forces the player to research the questions before trying again, rather than just keep repeating the quiz in one go from memory if the incorrect answers were shown from the first  every attempt from there on.
+
 Technologies Used:
 
-REACT was used as the foundation of the site.
+REACT + Vite was used as the foundation of the site.
 
 CSS was used to add the styles and layout of the site.
 
@@ -84,7 +88,7 @@ The page will be automatically refreshed with a detailed ribbon display to indic
 The live link can be found here
 ### 🔗 Quick Links
 - [View the GitHub Repo](https://github.com/lukeanderson127-afk/The-Ultimate-Online-Quiz)
-## 🎮 Play the Quiz
+🎮 Play the Quiz
 Click here to play the live version:  
 https://lukeanderson127-afk.github.io/The-Ultimate-Geography-Quiz/
 
